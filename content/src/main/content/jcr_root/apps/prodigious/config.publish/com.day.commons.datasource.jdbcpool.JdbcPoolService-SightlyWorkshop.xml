@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="sling:OsgiConfig"
+    jdbc.driver.class="com.mysql.jdbc.Driver"
+    jdbc.connection.uri="jdbc:mysql://localhost:3306/sightlyworkshop-publish"
+    jdbc.username="root"
+    jdbc.password=""
+    jdbc.validation.query=""
+    default.readonly="{Boolean}false"
+    default.autocommit="{Boolean}true"
+    pool.size="{Long}10"
+    pool.max.wait.msec="{Long}1000"
+    datasource.name="java:SightlyWorkshopDS"
+    datasource.svc.properties="[]"
+/>

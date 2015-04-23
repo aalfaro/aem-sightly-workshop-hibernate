@@ -1,0 +1,20 @@
+
+<h1 data-sly-text="${properties.title}">Title</h1>
+
+<div class="container" data-sly-use.productsController="${'cr.prodigious.aem.sightlyworkshop.components.controller.ProductsController'}">
+	<div class="row">
+		<div class="col-lg-12">
+			<ul data-sly-list.product="${productsController.products}">
+				<li>${productList.count}</li>
+				<li>SKU : ${product.productSKU}</li>
+				<li>Name : ${product.productName}</li>
+				<li>Description : ${product.productDescription}</li>
+				<li>Price : ${product.productPrice}</li>
+				<li>Category : ${product.category.categoryName} </li>
+				<li style="display:block">
+					<hr>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

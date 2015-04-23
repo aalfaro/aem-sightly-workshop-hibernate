@@ -1,4 +1,4 @@
-AEM Sightly Workshop
+AEM Sightly Workshop + Hibernate
 ========
 
 This a content package project generated using the multimodule-content-package-archetype.

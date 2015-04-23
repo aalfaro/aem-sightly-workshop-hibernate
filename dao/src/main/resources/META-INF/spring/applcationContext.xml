@@ -1,0 +1,54 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:osgi="http://www.springframework.org/schema/osgi" 
+	xmlns:osgix="http://www.springframework.org/schema/osgi-compendium"
+	xmlns:ctx="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	  http://www.springframework.org/schema/beans/spring-beans.xsd
+	  http://www.springframework.org/schema/context 
+	  http://www.springframework.org/schema/context/spring-context.xsd
+      http://www.springframework.org/schema/osgi  
+      http://www.springframework.org/schema/osgi/spring-osgi.xsd
+	  http://www.springframework.org/schema/osgi-compendium 
+	  http://www.springframework.org/schema/osgi-compendium/spring-osgi-compendium.xsd
+	  http://www.springframework.org/schema/jee 
+	  http://www.springframework.org/schema/jee/spring-jee.xsd
+	  http://www.springframework.org/schema/tx
+      http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<jee:jndi-lookup id="dataSource" jndi-name="java:SightlyWorkshopDS"/>
+
+	<bean id="sessionFactory"
+			class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan">
+            <list>
+                <value>cr.prodigious.aem.sightlyworkshop.model</value>
+            </list>
+        </property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">false</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+    	<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+    <tx:annotation-driven transaction-manager="transactionManager" />
+	
+	<context:component-scan base-package="cr.prodigious.aem.sightlyworkshop" />
+    		
+	<bean id="productService" class="cr.prodigious.aem.sightlyworkshop.service.impl.ProductServiceImpl" />
+	<osgi:service ref="productService" interface="cr.prodigious.aem.sightlyworkshop.service.ProductService" />
+	
+	<bean id="categoryService" class="cr.prodigious.aem.sightlyworkshop.service.impl.CategoryServiceImpl" />
+	<osgi:service ref="categoryService" interface="cr.prodigious.aem.sightlyworkshop.service.CategoryService" />
+
+</beans>

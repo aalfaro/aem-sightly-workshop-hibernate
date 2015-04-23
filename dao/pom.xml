@@ -15,16 +15,11 @@
     <!-- P R O J E C T D E S C R I P T I O N -->
     <!-- ====================================================================== -->
 
-    <artifactId>aem-sightly-workshop-bundle</artifactId>
+    <artifactId>aem-sightly-workshop-dao</artifactId>
     <packaging>bundle</packaging>
-    <name>AEM Sightly Workshop Bundle</name>
+    <name>AEM Sightly Workshop DAO</name>
 
     <dependencies>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>aem-sightly-workshop-dao</artifactId>
-            <version>${project.version}</version>
-        </dependency>
         <dependency>
             <groupId>org.osgi</groupId>
             <artifactId>org.osgi.compendium</artifactId>
@@ -81,7 +76,119 @@
 			<version>1.0.0</version>
 			<scope>provided</scope>
 		</dependency>
+        
+        <!-- SPRING/HIBERNATE REQUIRED DEPENDENCIES -->
+        
+        <dependency>
+		    <groupId>org.springframework.osgi</groupId>
+		    <artifactId>org.springframework.osgi.core</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>org.springframework.context</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>org.springframework.beans</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>org.springframework.core</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework.osgi</groupId>
+		    <artifactId>org.springframework.osgi.io</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>org.springframework.aop</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>org.springframework.asm</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>org.springframework.expression</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>org.springframework.orm</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>org.springframework.transaction</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>org.springframework.jdbc</artifactId>
+		</dependency>
+        <dependency>
+		    <groupId>org.aopalliance</groupId>
+		    <artifactId>com.springsource.org.aopalliance</artifactId>
+		</dependency>
+        <dependency>
+		    <groupId>javax.persistence</groupId>
+		    <artifactId>com.springsource.javax.persistence</artifactId>
+		</dependency>
+		<dependency>
+	    	<groupId>org.hibernate</groupId>
+			<artifactId>com.springsource.org.hibernate</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.dom4j</groupId>
+		    <artifactId>com.springsource.org.dom4j</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.hibernate.common</groupId>
+			<artifactId>com.springsource.org.hibernate.annotations.common</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>com.springsource.org.hibernate.annotations</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.jboss.logging</groupId>
+		    <artifactId>com.springsource.org.jboss.logging</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.xmlcommons</groupId>
+		    <artifactId>com.springsource.org.apache.xmlcommons</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.xerces</groupId>
+		    <artifactId>com.springsource.org.apache.xerces</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>com.springsource.org.apache.commons.dbcp</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>com.springsource.org.apache.commons.pool</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.jboss.javassist</groupId>
+		    <artifactId>com.springsource.javassist</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>com.mysql.jdbc</groupId>
+		    <artifactId>com.springsource.com.mysql.jdbc</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.antlr</groupId>
+		    <artifactId>com.springsource.org.antlr</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>net.sourceforge.cglib</groupId>
+		    <artifactId>com.springsource.net.sf.cglib</artifactId>
+		</dependency>
+		
+		<!-- SPRING/HIBERNATE REQUIRED DEPENDENCIES -->
+        
     </dependencies>
+    
+    
 
     <!-- ====================================================================== -->
     <!-- B U I L D D E F I N I T I O N -->
@@ -106,11 +213,14 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
-                        <Bundle-SymbolicName>cr.prodigious.aem-bundle</Bundle-SymbolicName>
-						<Sling-Model-Packages>cr.prodigious.aem.sightlyworkshop.components.model</Sling-Model-Packages>
+                        <Bundle-SymbolicName>cr.prodigious.aem-dao</Bundle-SymbolicName>
+                        <Include-Resource>
+                            {maven-resources}
+                        </Include-Resource>
+                        <Embed-Dependency>*;scope=compile|runtime</Embed-Dependency>
                         <Import-Package>
-                            *;resolution:=optional
-                        </Import-Package>
+		                    *;resolution:=optional
+		            	</Import-Package>
                     </instructions>
                 </configuration>
             </plugin>
